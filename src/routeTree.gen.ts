@@ -12,7 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashRouteImport } from './routes/_dash'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DashActivitiesRouteImport } from './routes/_dash.activities'
+import { Route as DashCropsRouteImport } from './routes/_dash.crops'
 import { Route as DashFarmsRouteImport } from './routes/_dash.farms'
+import { Route as DashFinanceRouteImport } from './routes/_dash.finance'
+import { Route as DashInventoryRouteImport } from './routes/_dash.inventory'
+import { Route as DashPurchasesRouteImport } from './routes/_dash.purchases'
+import { Route as DashSalesRouteImport } from './routes/_dash.sales'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +34,112 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashActivitiesRoute = DashActivitiesRouteImport.update({
+  id: '/activities',
+  path: '/activities',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashCropsRoute = DashCropsRouteImport.update({
+  id: '/crops',
+  path: '/crops',
+  getParentRoute: () => DashRoute,
+} as any)
 const DashFarmsRoute = DashFarmsRouteImport.update({
   id: '/farms',
   path: '/farms',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashFinanceRoute = DashFinanceRouteImport.update({
+  id: '/finance',
+  path: '/finance',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashInventoryRoute = DashInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashPurchasesRoute = DashPurchasesRouteImport.update({
+  id: '/purchases',
+  path: '/purchases',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashSalesRoute = DashSalesRouteImport.update({
+  id: '/sales',
+  path: '/sales',
   getParentRoute: () => DashRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/activities': typeof DashActivitiesRoute
+  '/crops': typeof DashCropsRoute
   '/farms': typeof DashFarmsRoute
+  '/finance': typeof DashFinanceRoute
+  '/inventory': typeof DashInventoryRoute
+  '/purchases': typeof DashPurchasesRoute
+  '/sales': typeof DashSalesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/activities': typeof DashActivitiesRoute
+  '/crops': typeof DashCropsRoute
   '/farms': typeof DashFarmsRoute
+  '/finance': typeof DashFinanceRoute
+  '/inventory': typeof DashInventoryRoute
+  '/purchases': typeof DashPurchasesRoute
+  '/sales': typeof DashSalesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_dash': typeof DashRouteWithChildren
   '/auth': typeof AuthRoute
+  '/_dash/activities': typeof DashActivitiesRoute
+  '/_dash/crops': typeof DashCropsRoute
   '/_dash/farms': typeof DashFarmsRoute
+  '/_dash/finance': typeof DashFinanceRoute
+  '/_dash/inventory': typeof DashInventoryRoute
+  '/_dash/purchases': typeof DashPurchasesRoute
+  '/_dash/sales': typeof DashSalesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/farms'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/activities'
+    | '/crops'
+    | '/farms'
+    | '/finance'
+    | '/inventory'
+    | '/purchases'
+    | '/sales'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/farms'
-  id: '__root__' | '/' | '/_dash' | '/auth' | '/_dash/farms'
+  to:
+    | '/'
+    | '/auth'
+    | '/activities'
+    | '/crops'
+    | '/farms'
+    | '/finance'
+    | '/inventory'
+    | '/purchases'
+    | '/sales'
+  id:
+    | '__root__'
+    | '/'
+    | '/_dash'
+    | '/auth'
+    | '/_dash/activities'
+    | '/_dash/crops'
+    | '/_dash/farms'
+    | '/_dash/finance'
+    | '/_dash/inventory'
+    | '/_dash/purchases'
+    | '/_dash/sales'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -88,6 +171,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_dash/activities': {
+      id: '/_dash/activities'
+      path: '/activities'
+      fullPath: '/activities'
+      preLoaderRoute: typeof DashActivitiesRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/crops': {
+      id: '/_dash/crops'
+      path: '/crops'
+      fullPath: '/crops'
+      preLoaderRoute: typeof DashCropsRouteImport
+      parentRoute: typeof DashRoute
+    }
     '/_dash/farms': {
       id: '/_dash/farms'
       path: '/farms'
@@ -95,15 +192,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashFarmsRouteImport
       parentRoute: typeof DashRoute
     }
+    '/_dash/finance': {
+      id: '/_dash/finance'
+      path: '/finance'
+      fullPath: '/finance'
+      preLoaderRoute: typeof DashFinanceRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/inventory': {
+      id: '/_dash/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof DashInventoryRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/purchases': {
+      id: '/_dash/purchases'
+      path: '/purchases'
+      fullPath: '/purchases'
+      preLoaderRoute: typeof DashPurchasesRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/sales': {
+      id: '/_dash/sales'
+      path: '/sales'
+      fullPath: '/sales'
+      preLoaderRoute: typeof DashSalesRouteImport
+      parentRoute: typeof DashRoute
+    }
   }
 }
 
 interface DashRouteChildren {
+  DashActivitiesRoute: typeof DashActivitiesRoute
+  DashCropsRoute: typeof DashCropsRoute
   DashFarmsRoute: typeof DashFarmsRoute
+  DashFinanceRoute: typeof DashFinanceRoute
+  DashInventoryRoute: typeof DashInventoryRoute
+  DashPurchasesRoute: typeof DashPurchasesRoute
+  DashSalesRoute: typeof DashSalesRoute
 }
 
 const DashRouteChildren: DashRouteChildren = {
+  DashActivitiesRoute: DashActivitiesRoute,
+  DashCropsRoute: DashCropsRoute,
   DashFarmsRoute: DashFarmsRoute,
+  DashFinanceRoute: DashFinanceRoute,
+  DashInventoryRoute: DashInventoryRoute,
+  DashPurchasesRoute: DashPurchasesRoute,
+  DashSalesRoute: DashSalesRoute,
 }
 
 const DashRouteWithChildren = DashRoute._addFileChildren(DashRouteChildren)
