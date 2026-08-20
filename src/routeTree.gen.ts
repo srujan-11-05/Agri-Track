@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DashActivitiesRouteImport } from './routes/_dash.activities'
 import { Route as DashAdminRouteImport } from './routes/_dash.admin'
 import { Route as DashCropsRouteImport } from './routes/_dash.crops'
+import { Route as DashDashboardRouteImport } from './routes/_dash.dashboard'
 import { Route as DashFarmsRouteImport } from './routes/_dash.farms'
 import { Route as DashFinanceRouteImport } from './routes/_dash.finance'
 import { Route as DashInventoryRouteImport } from './routes/_dash.inventory'
@@ -50,6 +51,11 @@ const DashAdminRoute = DashAdminRouteImport.update({
 const DashCropsRoute = DashCropsRouteImport.update({
   id: '/crops',
   path: '/crops',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashDashboardRoute = DashDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => DashRoute,
 } as any)
 const DashFarmsRoute = DashFarmsRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/activities': typeof DashActivitiesRoute
   '/admin': typeof DashAdminRoute
   '/crops': typeof DashCropsRoute
+  '/dashboard': typeof DashDashboardRoute
   '/farms': typeof DashFarmsRoute
   '/finance': typeof DashFinanceRoute
   '/inventory': typeof DashInventoryRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/activities': typeof DashActivitiesRoute
   '/admin': typeof DashAdminRoute
   '/crops': typeof DashCropsRoute
+  '/dashboard': typeof DashDashboardRoute
   '/farms': typeof DashFarmsRoute
   '/finance': typeof DashFinanceRoute
   '/inventory': typeof DashInventoryRoute
@@ -124,6 +132,7 @@ export interface FileRoutesById {
   '/_dash/activities': typeof DashActivitiesRoute
   '/_dash/admin': typeof DashAdminRoute
   '/_dash/crops': typeof DashCropsRoute
+  '/_dash/dashboard': typeof DashDashboardRoute
   '/_dash/farms': typeof DashFarmsRoute
   '/_dash/finance': typeof DashFinanceRoute
   '/_dash/inventory': typeof DashInventoryRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
     | '/activities'
     | '/admin'
     | '/crops'
+    | '/dashboard'
     | '/farms'
     | '/finance'
     | '/inventory'
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
     | '/activities'
     | '/admin'
     | '/crops'
+    | '/dashboard'
     | '/farms'
     | '/finance'
     | '/inventory'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
     | '/_dash/activities'
     | '/_dash/admin'
     | '/_dash/crops'
+    | '/_dash/dashboard'
     | '/_dash/farms'
     | '/_dash/finance'
     | '/_dash/inventory'
@@ -228,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashCropsRouteImport
       parentRoute: typeof DashRoute
     }
+    '/_dash/dashboard': {
+      id: '/_dash/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashDashboardRouteImport
+      parentRoute: typeof DashRoute
+    }
     '/_dash/farms': {
       id: '/_dash/farms'
       path: '/farms'
@@ -284,6 +303,7 @@ interface DashRouteChildren {
   DashActivitiesRoute: typeof DashActivitiesRoute
   DashAdminRoute: typeof DashAdminRoute
   DashCropsRoute: typeof DashCropsRoute
+  DashDashboardRoute: typeof DashDashboardRoute
   DashFarmsRoute: typeof DashFarmsRoute
   DashFinanceRoute: typeof DashFinanceRoute
   DashInventoryRoute: typeof DashInventoryRoute
@@ -297,6 +317,7 @@ const DashRouteChildren: DashRouteChildren = {
   DashActivitiesRoute: DashActivitiesRoute,
   DashAdminRoute: DashAdminRoute,
   DashCropsRoute: DashCropsRoute,
+  DashDashboardRoute: DashDashboardRoute,
   DashFarmsRoute: DashFarmsRoute,
   DashFinanceRoute: DashFinanceRoute,
   DashInventoryRoute: DashInventoryRoute,
