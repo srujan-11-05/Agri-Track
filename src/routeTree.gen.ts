@@ -13,10 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashRouteImport } from './routes/_dash'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DashActivitiesRouteImport } from './routes/_dash.activities'
+import { Route as DashAdminRouteImport } from './routes/_dash.admin'
 import { Route as DashCropsRouteImport } from './routes/_dash.crops'
 import { Route as DashFarmsRouteImport } from './routes/_dash.farms'
 import { Route as DashFinanceRouteImport } from './routes/_dash.finance'
 import { Route as DashInventoryRouteImport } from './routes/_dash.inventory'
+import { Route as DashMarketRouteImport } from './routes/_dash.market'
+import { Route as DashProfileRouteImport } from './routes/_dash.profile'
 import { Route as DashPurchasesRouteImport } from './routes/_dash.purchases'
 import { Route as DashSalesRouteImport } from './routes/_dash.sales'
 
@@ -39,6 +42,11 @@ const DashActivitiesRoute = DashActivitiesRouteImport.update({
   path: '/activities',
   getParentRoute: () => DashRoute,
 } as any)
+const DashAdminRoute = DashAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => DashRoute,
+} as any)
 const DashCropsRoute = DashCropsRouteImport.update({
   id: '/crops',
   path: '/crops',
@@ -59,6 +67,16 @@ const DashInventoryRoute = DashInventoryRouteImport.update({
   path: '/inventory',
   getParentRoute: () => DashRoute,
 } as any)
+const DashMarketRoute = DashMarketRouteImport.update({
+  id: '/market',
+  path: '/market',
+  getParentRoute: () => DashRoute,
+} as any)
+const DashProfileRoute = DashProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashRoute,
+} as any)
 const DashPurchasesRoute = DashPurchasesRouteImport.update({
   id: '/purchases',
   path: '/purchases',
@@ -74,10 +92,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/activities': typeof DashActivitiesRoute
+  '/admin': typeof DashAdminRoute
   '/crops': typeof DashCropsRoute
   '/farms': typeof DashFarmsRoute
   '/finance': typeof DashFinanceRoute
   '/inventory': typeof DashInventoryRoute
+  '/market': typeof DashMarketRoute
+  '/profile': typeof DashProfileRoute
   '/purchases': typeof DashPurchasesRoute
   '/sales': typeof DashSalesRoute
 }
@@ -85,10 +106,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/activities': typeof DashActivitiesRoute
+  '/admin': typeof DashAdminRoute
   '/crops': typeof DashCropsRoute
   '/farms': typeof DashFarmsRoute
   '/finance': typeof DashFinanceRoute
   '/inventory': typeof DashInventoryRoute
+  '/market': typeof DashMarketRoute
+  '/profile': typeof DashProfileRoute
   '/purchases': typeof DashPurchasesRoute
   '/sales': typeof DashSalesRoute
 }
@@ -98,10 +122,13 @@ export interface FileRoutesById {
   '/_dash': typeof DashRouteWithChildren
   '/auth': typeof AuthRoute
   '/_dash/activities': typeof DashActivitiesRoute
+  '/_dash/admin': typeof DashAdminRoute
   '/_dash/crops': typeof DashCropsRoute
   '/_dash/farms': typeof DashFarmsRoute
   '/_dash/finance': typeof DashFinanceRoute
   '/_dash/inventory': typeof DashInventoryRoute
+  '/_dash/market': typeof DashMarketRoute
+  '/_dash/profile': typeof DashProfileRoute
   '/_dash/purchases': typeof DashPurchasesRoute
   '/_dash/sales': typeof DashSalesRoute
 }
@@ -111,10 +138,13 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/activities'
+    | '/admin'
     | '/crops'
     | '/farms'
     | '/finance'
     | '/inventory'
+    | '/market'
+    | '/profile'
     | '/purchases'
     | '/sales'
   fileRoutesByTo: FileRoutesByTo
@@ -122,10 +152,13 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/activities'
+    | '/admin'
     | '/crops'
     | '/farms'
     | '/finance'
     | '/inventory'
+    | '/market'
+    | '/profile'
     | '/purchases'
     | '/sales'
   id:
@@ -134,10 +167,13 @@ export interface FileRouteTypes {
     | '/_dash'
     | '/auth'
     | '/_dash/activities'
+    | '/_dash/admin'
     | '/_dash/crops'
     | '/_dash/farms'
     | '/_dash/finance'
     | '/_dash/inventory'
+    | '/_dash/market'
+    | '/_dash/profile'
     | '/_dash/purchases'
     | '/_dash/sales'
   fileRoutesById: FileRoutesById
@@ -178,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashActivitiesRouteImport
       parentRoute: typeof DashRoute
     }
+    '/_dash/admin': {
+      id: '/_dash/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof DashAdminRouteImport
+      parentRoute: typeof DashRoute
+    }
     '/_dash/crops': {
       id: '/_dash/crops'
       path: '/crops'
@@ -206,6 +249,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashInventoryRouteImport
       parentRoute: typeof DashRoute
     }
+    '/_dash/market': {
+      id: '/_dash/market'
+      path: '/market'
+      fullPath: '/market'
+      preLoaderRoute: typeof DashMarketRouteImport
+      parentRoute: typeof DashRoute
+    }
+    '/_dash/profile': {
+      id: '/_dash/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof DashProfileRouteImport
+      parentRoute: typeof DashRoute
+    }
     '/_dash/purchases': {
       id: '/_dash/purchases'
       path: '/purchases'
@@ -225,20 +282,26 @@ declare module '@tanstack/react-router' {
 
 interface DashRouteChildren {
   DashActivitiesRoute: typeof DashActivitiesRoute
+  DashAdminRoute: typeof DashAdminRoute
   DashCropsRoute: typeof DashCropsRoute
   DashFarmsRoute: typeof DashFarmsRoute
   DashFinanceRoute: typeof DashFinanceRoute
   DashInventoryRoute: typeof DashInventoryRoute
+  DashMarketRoute: typeof DashMarketRoute
+  DashProfileRoute: typeof DashProfileRoute
   DashPurchasesRoute: typeof DashPurchasesRoute
   DashSalesRoute: typeof DashSalesRoute
 }
 
 const DashRouteChildren: DashRouteChildren = {
   DashActivitiesRoute: DashActivitiesRoute,
+  DashAdminRoute: DashAdminRoute,
   DashCropsRoute: DashCropsRoute,
   DashFarmsRoute: DashFarmsRoute,
   DashFinanceRoute: DashFinanceRoute,
   DashInventoryRoute: DashInventoryRoute,
+  DashMarketRoute: DashMarketRoute,
+  DashProfileRoute: DashProfileRoute,
   DashPurchasesRoute: DashPurchasesRoute,
   DashSalesRoute: DashSalesRoute,
 }
