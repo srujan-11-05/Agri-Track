@@ -1,6 +1,6 @@
 # Agribusiness Management System
 
-build the project based on the given solution
+
 
 
 
