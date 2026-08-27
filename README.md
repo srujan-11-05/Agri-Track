@@ -98,5 +98,4 @@ https://build-sparkle-buddy.lovable.app
 
 
 
-[Quick Start Guide](./QUICKSTART.md) | [Full Documentation](./README.md) | [API Reference](./PROJECT_STRUCTURE.md)
 
