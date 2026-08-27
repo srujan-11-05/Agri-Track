@@ -195,26 +195,46 @@ function Dashboard() {
           <p className="mb-4 text-sm text-muted-foreground">
             Sales and other income against purchases and expenses.
           </p>
-          <div className="h-72">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={monthly}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 12 }} stroke="var(--color-muted-foreground)" />
-                <YAxis tick={{ fontSize: 12 }} stroke="var(--color-muted-foreground)" width={70} />
-                <Tooltip
-                  formatter={(v: number) => money(v)}
-                  contentStyle={{
-                    background: "var(--color-card)",
-                    border: "1px solid var(--color-border)",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                  }}
-                />
-                <Bar dataKey="income" name="Income" fill="var(--color-chart-1)" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="cost" name="Costs" fill="var(--color-chart-2)" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          {monthly.length === 0 ? (
+            <p className="py-24 text-center text-sm text-muted-foreground">
+              Record a sale, purchase or expense to see your monthly trend here.
+            </p>
+          ) : (
+            <div className="h-72">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={monthly}>
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="var(--color-border)"
+                    vertical={false}
+                  />
+                  <XAxis
+                    dataKey="month"
+                    tick={{ fontSize: 12 }}
+                    stroke="var(--color-muted-foreground)"
+                  />
+                  <YAxis tick={{ fontSize: 12 }} stroke="var(--color-muted-foreground)" width={70} />
+                  <Tooltip
+                    formatter={(v: number) => money(v)}
+                    contentStyle={{
+                      background: "var(--color-card)",
+                      border: "1px solid var(--color-border)",
+                      borderRadius: "8px",
+                      fontSize: "12px",
+                    }}
+                  />
+                  <Bar
+                    dataKey="income"
+                    name="Income"
+                    fill="var(--color-chart-1)"
+                    radius={[4, 4, 0, 0]}
+                  />
+                  <Bar dataKey="cost" name="Costs" fill="var(--color-chart-2)" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
         </div>
 
         <div className="rounded-lg border bg-card p-5 shadow-soft">
